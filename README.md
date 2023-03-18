@@ -4,6 +4,7 @@
 
 - Basics
 - Java database connectivity (JDBC)
+- Java Server Pages (Servlets)
 
 ### Extras
 
