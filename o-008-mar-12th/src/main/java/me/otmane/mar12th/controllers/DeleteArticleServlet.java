@@ -36,6 +36,6 @@ public class DeleteArticleServlet extends HttpServlet {
       } catch (SQLException ignored) {
       }
     }
-    response.sendRedirect("../../articles/all");
+    response.sendRedirect(request.getContextPath()+"/articles/all");
   }
 }

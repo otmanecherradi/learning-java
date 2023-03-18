@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-@WebServlet(name = "EditArticleServlet", value = "/articles/edit/")
+@WebServlet(name = "EditArticleServlet", value = "/articles/edit")
 public class EditArticleServlet extends HttpServlet {
   Connection cnx;
   ArticleDAOImpl articleDAO;
@@ -64,7 +64,7 @@ public class EditArticleServlet extends HttpServlet {
       } else {
         articleDAO.update(a.build());
       }
-      response.sendRedirect("../../articles/all");
+      response.sendRedirect(request.getContextPath()+"/articles/all");
 
     } catch (SQLException e) {
       request.setAttribute("error", e.getMessage());

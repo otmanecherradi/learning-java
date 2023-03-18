@@ -9,36 +9,51 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
   <title>All articles</title>
 </head>
 <body>
 
 ${error}
 
-<table border="1">
-  <thead>
-  <th>title</th>
-  <th>description</th>
-  <th>price</th>
-  <th>actions</th>
-  </thead>
-  <tbody>
+<div class="container">
+  <table class="table">
+    <thead>
+    <th>title</th>
+    <th>description</th>
+    <th>price</th>
+    <th>actions</th>
+    </thead>
+    <tbody>
 
-  <c:forEach items="${articles}" var="article">
-    <tr>
-      <td><c:out value="${article.title}"/></td>
-      <td><c:out value="${article.description}"/></td>
-      <td><c:out value="${article.price}"/></td>
-      <td>
-        <a href="${pageContext.request.contextPath}/articles/edit/?id=${article.pk}">edit</a>
-        <a href="${pageContext.request.contextPath}/articles/delete/?id=${article.pk}">delete</a>
-      </td>
-    </tr>
-  </c:forEach>
-  </tbody>
-</table>
+    <c:forEach items="${articles}" var="article">
+      <tr>
+        <td><c:out value="${article.title}"/></td>
+        <td><c:out value="${article.description}"/></td>
+        <td><c:out value="${article.price}"/></td>
+        <td>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <a href="${pageContext.request.contextPath}/articles/edit?id=${article.pk}" class="btn btn-warning">edit</a>
+            <a href="${pageContext.request.contextPath}/articles/delete?id=${article.pk}" class="btn btn-danger">delete</a>
+          </div>
+        </td>
+      </tr>
+    </c:forEach>
+    </tbody>
+  </table>
+  <a href="${pageContext.request.contextPath}/articles/edit" class="btn btn-primary">Add</a>
+</div>
 
-<a href="${pageContext.request.contextPath}/articles/add/">Add</a>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

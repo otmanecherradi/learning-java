@@ -8,30 +8,40 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <title>Title</title>
 </head>
 <body>
 
+<div class="container">
+
 ${error}
 
-<form action="${pageContext.request.contextPath}/articles/edit/" method="post">
+<form action="${pageContext.request.contextPath}/articles/edit" method="post">
   <input type="hidden" name="id" value="${article.pk}">
-  <div>
-    <label for="title">title</label>
-    <input type="text" name="title" id="title" value="${article.title}">
+  <div class="mb-3">
+    <label for="title" class="form-label">title</label>
+    <input type="text" class="form-control" name="title" id="title" value="${article.title}">
   </div>
-  <div>
-    <label for="description">title</label>
-    <textarea name="description" id="description" cols="30" rows="10">
-      ${article.description}
-    </textarea>
+  <div class="mb-3">
+    <label for="description" class="form-label">title</label>
+    <textarea name="description" class="form-control" id="description" cols="30" rows="10">${article.description}</textarea>
   </div>
-  <div>
-    <label for="price">price</label>
-    <input type="number" step="0.01" name="price" id="price" value="${article.price}">
+  <div class="mb-3">
+    <label for="price" class="form-label">price</label>
+    <input type="number" class="form-control" step="0.01" name="price" id="price" value="${article.price}">
   </div>
-  <input type="submit" value="Send">
+  <input type="submit" class="btn btn-primary" value="Send">
 </form>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
