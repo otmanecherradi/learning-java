@@ -21,6 +21,9 @@
         <module>o-003-fev-19th</module>
         <module>o-004-mar-4th</module>
         <module>o-005-mar-4th-biz</module>
+        <module>o-007-mar-11th</module>
+        <module>o-008-mar-12th</module>
+        <module>o-009-assignment</module>
     </modules>
 
     <dependencyManagement>
