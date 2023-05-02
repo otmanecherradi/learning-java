@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import me.otmane.assignment.core.DatabaseDAO;
+import me.otmane.assignment.core.StudentDAO;
 import me.otmane.assignment.models.Branch;
 import me.otmane.assignment.models.Gender;
 import me.otmane.assignment.models.Student;
@@ -18,14 +19,14 @@ import java.sql.SQLException;
 
 @WebServlet(name = "StudentsServlet", urlPatterns = {"/students/*"})
 public class StudentsServlet extends HttpServlet {
-    DatabaseDAO<Student, Long> studentsDAO;
+    StudentDAO studentsDAO;
     DatabaseDAO<Branch, Long> branchesDAO;
 
     @Override
     public void init() throws ServletException {
         super.init();
         try {
-            studentsDAO = new DatabaseDAO<>(Student.class);
+            studentsDAO = new StudentDAO(Student.class);
             branchesDAO = new DatabaseDAO<>(Branch.class);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -81,7 +82,12 @@ public class StudentsServlet extends HttpServlet {
 
     private void listStudents(HttpServletRequest request, HttpServletResponse response, String[] params) throws ServletException, IOException {
         try {
-            request.setAttribute("students", studentsDAO.all());
+            String branchPk = request.getParameter("branch_pk");
+            if (branchPk == null || branchPk.isEmpty())
+                request.setAttribute("students", studentsDAO.all());
+            else
+                request.setAttribute("students", studentsDAO.byBranch(Long.parseLong(branchPk)));
+            request.setAttribute("branches", branchesDAO.all());
         } catch (SQLException e) {
             request.setAttribute("error", e.getMessage());
         }

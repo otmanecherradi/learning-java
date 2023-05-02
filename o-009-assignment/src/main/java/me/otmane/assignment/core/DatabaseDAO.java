@@ -14,7 +14,7 @@ import java.util.List;
 
 public class DatabaseDAO<T extends Entity, PkType extends Long> {
     protected final Connection cnx;
-    private final Class<T> klass;
+    protected final Class<T> klass;
 
     public DatabaseDAO(Class<T> klass) throws SQLException {
         this.klass = klass;

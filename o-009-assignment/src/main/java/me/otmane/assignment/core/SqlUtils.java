@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 public class SqlUtils {
 
     private static final String SELECT_SQL_TEMPLATE = "select %s from %s order by %s;";
-    private static final String SELECT_BY_PK_SQL_TEMPLATE = "select %s from %s where %s = ?;";
+    private static final String SELECT_BY_PARAM_SQL_TEMPLATE = "select %s from %s where %s = ?;";
     private static final String COUNT_SQL_TEMPLATE = "select count(1) from %s;";
     private static final String INSERT_SQL_TEMPLATE = "insert into %s (%s) values (%s) returning *;";
     private static final String UPDATE_SQL_TEMPLATE = "update %s set %s where %s = ?;";
@@ -59,10 +59,10 @@ public class SqlUtils {
     }
 
     public static String getSelectByPKQuery(Class<? extends Entity> entityClass) {
-        return getSelectByPKQuery(entityClass, null);
+        return getSelectByParamQuery(entityClass, null);
     }
 
-    public static String getSelectByPKQuery(Class<? extends Entity> entityClass, String primaryKey) {
+    public static String getSelectByParamQuery(Class<? extends Entity> entityClass, String param) {
         Table table = entityClass.getAnnotation(Table.class);
 
         ArrayList<String> selectFields = new ArrayList<>();
@@ -94,12 +94,12 @@ public class SqlUtils {
                 }
             }
 
-            if (primaryKey == null || primaryKey.isEmpty())
+            if (param == null || param.isEmpty())
                 if (fieldAnnotation.primaryKey())
-                    primaryKey = "%s.%s".formatted(table.name(), fieldAnnotation.name());
+                    param = "%s.%s".formatted(table.name(), fieldAnnotation.name());
         }
 
-        return SELECT_BY_PK_SQL_TEMPLATE.formatted(String.join(", ", selectFields), tableName, primaryKey);
+        return SELECT_BY_PARAM_SQL_TEMPLATE.formatted(String.join(", ", selectFields), tableName, param);
     }
 
     public static String getInsertQuery(Class<? extends Entity> entityClass) {
