@@ -6,6 +6,8 @@
 - Java database connectivity (JDBC)
 - Java Server Pages (Servlets)
 - Assignment
+- Hibernate
+- Spring framework - Dependency injection
 
 ### Extras
 

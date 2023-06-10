@@ -24,6 +24,8 @@
         <module>o-007-mar-11th</module>
         <module>o-008-mar-12th</module>
         <module>o-009-assignment</module>
+        <module>o-010-hibernate</module>
+        <module>o-011-spring</module>
     </modules>
 
     <dependencyManagement>
