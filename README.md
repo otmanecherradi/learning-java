@@ -8,6 +8,7 @@
 - Assignment
 - Hibernate
 - Spring framework - Dependency injection
+- Spring boot
 
 ### Extras
 
