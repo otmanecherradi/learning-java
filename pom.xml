@@ -27,6 +27,7 @@
         <module>o-010-hibernate</module>
         <module>o-011-spring</module>
         <module>o-012-spring-boot</module>
+        <module>o-013-spring-boot-assignment</module>
     </modules>
 
     <dependencyManagement>
